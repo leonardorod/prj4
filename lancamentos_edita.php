@@ -17,6 +17,27 @@
 </head>
 <body>
 	<? include('menu.php'); ?>
-	<a href="lancamentos_edita.php">AAA</a>
+	<div class="card">
+	  <div class="card-header">Lançamentos</div>
+	  <div class="card-body">
+	  	<div class="form-group">
+	  		<label for="valor">Valor:</label>
+	  		<input type="text" id="valor">
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="tipo">Tipo:</label>
+	  		<input type="text" id="tipo">
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="tipo2"></label>
+	  		<input type="text" id="tipo2">
+	  	</div>
+	  </div>
+	  <div class="card-footer">
+	  	<div class="btn btn-primary">Gravar</div>
+	  	<div class="btn btn-secondary">Cancelar</div>
+	  	<div class="btn btn-danger">Deletar</div>
+	  </div>
+	</div>
 </body>
 </html>
