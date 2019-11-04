@@ -1,0 +1,12 @@
+.Obs_claro{
+  color: #c8c8c8;
+  font-size: 12px;
+  font-family: cursive;
+}
+
+.divMsg{
+  margin: 10px; 
+  position: absolute;
+  z-index: 9999; 
+  width: 100%
+}
