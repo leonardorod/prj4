@@ -30,6 +30,7 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/padrao.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -38,28 +39,49 @@
          document.getElementById("botao_alerta").click();
       }, 3000);
 
-    </script>
+      function logar(){
+        $("#operacao").val('logar');
+        $("#form_login").submit();
+      }
 
+      function registrar(){
+
+      }
+    </script>
+  
   </head>
   <body>
+    <div class="container">
     <div class="row divMsg">
-      <div class="col-md-4 col-sm-1 col-1"></div>
-      <div class="col-md-4 col-sm-10 col-10"><?= $msg ?></div>   
-      <div class="col-md-4 col-sm-1 col-1"></div>
+        <div class="col-md-4 col-sm-1 col-1"></div>
+        <div class="col-md-4 col-sm-10 col-10"><?= $msg ?></div>   
+        <div class="col-md-4 col-sm-1 col-1"></div>
     </div>
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <div class="fadeIn first">
-          <br><br>
-          <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
-        </div>
-        <form action="conecta_login.php" method="post">
-          <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="Usuario">
-          <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha">
-          <input type="hidden" id="operacao" name="operacao" value="logar">
-          <input type="submit" class="fadeIn fourth" value="Logar">
-        </form>
-      </div>
+    <div class="sidenav d-none d-sm-block">
+       <div class="login-main-text">
+          <h2>Controle de gastos</h2>
+          <p>Efetue o login ou um registro para continuar.</p>
+       </div>
+    </div>
+    <div class="main">
+       <div class="col-md-6 col-sm-12">
+          <div class="login-form">
+             <form method="post" action="conecta_login.php" id="form_login">
+              <input type="hidden" id="operacao" name="operacao">
+                <div class="form-group">
+                   <label>Usuario</label>
+                   <input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario">
+                </div>
+                <div class="form-group">
+                   <label>Senha</label>
+                   <input type="password" class="form-control" placeholder="Senha" id="senha" name="senha">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="logar()">Login</button>
+                <button type="button" class="btn btn-info"  onclick="registrar()">Register</button>
+             </form>
+          </div>
+       </div>
+    </div>
     </div>
   </body>
 </html>
