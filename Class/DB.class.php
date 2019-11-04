@@ -280,7 +280,7 @@
 		private function criaTabelas($nomeBD){
 			//
 			//Crias as tabelas do banco de dados
-			$sql = file_get_contents("../_BD/tabelas_sistema.sql");
+			$sql = file_get_contents("tabelas_sistema.sql");
 			$sql = utf8_decode($sql);
 			if($this->conexao->exec($sql)){
     			echo 'Falha ao criar as tabelas!';

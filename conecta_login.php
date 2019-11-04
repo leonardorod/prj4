@@ -34,14 +34,10 @@ if ($_POST['operacao'] == "logar") {
 	$resultado = $user->conferirSenha($db);
 	if ($resultado['retorno']){
 		//
-		//Executa tarefas diarias no primeiro login bem sucedido do dia
-		$tarefasDiarias = new Tarefas_Diarias($parametros, $db, $util);
-		$tarefasDiarias->executa_tarefas();
-		//
 		$_SESSION['logado'] 						= true;
 		$_SESSION['user'] 							= $_POST['usuario'];
 		$_SESSION['idusuario']				 	    = $resultado['idpessoas'];
-		echo "Logado";
+		header('Location: inicio.php');
 		exit;
 	}else{
 		$_SESSION['logado'] = false;
