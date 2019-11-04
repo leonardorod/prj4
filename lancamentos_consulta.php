@@ -1,3 +1,4 @@
+<?php include_once("conecta_login.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,39 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function editaLancto(id){
+
+		}
+	</script>
 </head>
 <body>
-	<? include('menu.php'); ?>
-	<a href="lancamentos_edita.php">AAA</a>
+	<?php include('menu.php'); ?>
+
+	<table border="1">
+		<th>ID</th>
+		<th>Valor</th>
+		<th>Tipo</th>
+		<th>Classificação</th>
+		<th>Data</th>
+	<?$sql = "SELECT * FROM lanctos 
+					JOIN pessoas ON (idpessoas = lct_idpessoas)
+					JOIN tipo ON (idtipo = lct_idtipo)
+					JOIN classe ON (idclasse = lct_idclasse)
+				WHERE idpessoas = " . $_SESSION['idusuario'];
+	$res = $db->consultar($sql);
+	foreach ($res as $reg) {
+	?>
+		<tr onclick="editaLancto(<?=$reg['idlanctos']?>)">
+			<td><?= $reg['idlanctos'] ?></td>
+			<td><?= $reg['lct_valor'] ?></td>
+			<td><?= $reg['tipo_descricao'] ?></td>
+			<td><?= $reg['cls_descricao'] ?></td>
+			<td><?= $util->convertData($reg['lct_data']) ?></td>
+		</tr>
+	<?
+	}
+	?>
+	</table>
 </body>
 </html>

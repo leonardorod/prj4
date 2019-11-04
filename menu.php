@@ -17,5 +17,11 @@
         <a class="nav-link" href="relatorios.php">Relatórios</a>
       </li>
     </ul>
+    <div>
+      <form action="conecta_login.php" method="post">
+        <input type="hidden" id="operacao" name="operacao" value="Sair">
+        <button type="submit" class="btn btn-danger">Sair</button>
+      </form>
+    </div>
   </div>
 </nav>

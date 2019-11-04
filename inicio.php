@@ -1,3 +1,4 @@
+<?php include_once("conecta_login.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<? include('menu.php'); ?>
+	<?php include('menu.php'); ?>
 </body>
 </html>
