@@ -12,18 +12,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="wrapper fadeInDown">
-      <div id="formContent">
-        <div class="fadeIn first">
-          <br><br>
-          Criar constante (Login)
-        </div>
-        <form action="criaConstante.php" method="POST">
-          <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha">
-          <input type="hidden" class="form-control" id="operacao" name="operacao" value="logar">
-          <input type="submit" class="fadeIn fourth" value="Logar">
-        </form>
-      </div>
+    <div class="container">
+    <div class="row divMsg">
+        <div class="col-md-4 col-sm-1 col-1"></div>
+        <div class="col-md-4 col-sm-10 col-10"><?= $msg ?></div>   
+        <div class="col-md-4 col-sm-1 col-1"></div>
+    </div>
+    <div class="sidenav d-none d-sm-block">
+       <div class="login-main-text">
+          <h2>Criação do Constante</h2>
+          <p>Efetue o login para continuar.</p>
+       </div>
+    </div>
+    <div class="main">
+       <div class="col-md-6 col-sm-12">
+          <div class="login-form">
+             <form method="post" action="criaConstante.php" id="form_login">
+              <input type="hidden" id="operacao" name="operacao">
+                <div class="form-group">
+                   <label>Senha</label>
+                   <input type="password" class="form-control" placeholder="Senha" id="senha" name="senha">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="logar()">Login</button>
+             </form>
+          </div>
+       </div>
     </div>
   </body>
 </html>
