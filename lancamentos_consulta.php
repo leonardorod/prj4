@@ -15,15 +15,18 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="js/funcoes.js"></script>
 	<script type="text/javascript">
 		function editaLancto(id){
-
+			postFormulario('lancamentos_edita.php', {id: id});
 		}
 	</script>
 </head>
 <body>
 	<?php include('menu.php'); ?>
-
+	<table>
+		<tr><td><button class="btn btn-primary" type="button" onclick="editaLancto(0)"><b>+</b></button></td></tr>
+	</table>
 	<table border="1">
 		<th>ID</th>
 		<th>Valor</th>

@@ -15,9 +15,33 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="js/funcoes.js"></script>
+	<script type="text/JavaScript">
+		function cancelar(){
+			postFormulario('lancamentos_edita.php', {id: 0});
+		}
+
+		function operacao(op){
+			$.post("lancamentos_grava.php", {operacao: op}, 
+				function(data){
+					if (data == 'OK') {
+						alert("Gravado com sucesso!");
+					}
+				});
+		}
+	</script>
 </head>
 <body>
-	<? include('menu.php'); ?>
+	<? include('menu.php'); 
+		if (!empty($_POST['id'])) {
+			$sql = "SELECT * FROM lanctos 
+					JOIN tipo ON (idtipo = lct_idtipo)
+					JOIN classe ON (idclasse = lct_idclasse)
+				WHERE idlanctos = " . $_POST['id'];
+			$reg = $db->retornaUmReg($sql);
+		}
+	?>
+	<input type="hidden" id="idlancto" value="<?= $reg['idlanctos']?>">
 	<div class="card">
 	  <div class="card-header">Lançamentos</div>
 	  <div class="card-body container-fluid">
@@ -26,7 +50,7 @@
 	  			<label for="valor">Valor:</label>
 	  		</div>
 	  		<div class="col-10">
-	  			<input type="text" id="valor">
+	  			<input type="text" id="valor" class="form-control" value="<?= $reg['lct_valor']?>">
 	  		</div>
 	  	</div>
 	  	<div class="form-group row">
@@ -34,16 +58,10 @@
 		  		<label for="tipo">Tipo:</label>
 		  	</div>
 	  		<div class="col-10">
-	  			<select name="selectTipo" id="idtipo">
 	  				<?
 	  					$sql = "SELECT * FROM tipo";
-	  					$res = $db->consultar($sql);
-
-	  					foreach ($res as $reg) {
-	  						echo "<option value='" . $reg['idtipo'] . "'> " . $reg['tipo_descricao'] . "</option>";
-	  					}
+	  					echo $util->comboBoxSql('tipo', 'tipo_descricao', 'idtipo', $sql, $db, $reg['idtipo']);
 	  				?>
-	  			</select>
 		  	</div>
 	  	</div>
 	  	<div class="form-group row">
@@ -51,17 +69,20 @@
 		  		<label for="tipo2">&nbsp;</label>
 		  	</div>
 		  	<div class="col-10">
-		  		<input type="text" id="tipo2">
+		  		<?
+		  			$sql = "SELECT * FROM classe";
+		  			echo $util->comboBoxSql('classe', 'cls_descricao', 'idclasse', $sql, $db, $reg['idclasse']);
+		  		?>
 		  	</div>
 	  	</div>
 	  </div>
 	  <div class="card-footer container-fluid">
 	  	<div class="row">
-	  		<div class="btn btn-primary col-3">Gravar</div>
+	  		<div class="btn btn-primary col-3" onclick="operacao('gravar')">Gravar</div>
 	  		<div class="col-1"></div>
-		  	<div class="btn btn-secondary col-3">Cancelar</div>
+		  	<div class="btn btn-secondary col-3" onclick="cancelar()">Cancelar</div>
 		  	<div class="col-1"></div>
-		  	<div class="btn btn-danger col-3">Deletar</div>
+		  	<div class="btn btn-danger col-3" onclick="operacao('deletar')">Deletar</div>
 		  	<div class="col-1"></div>
 	  	</div>
 	  </div>
