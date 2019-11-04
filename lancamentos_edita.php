@@ -1,4 +1,11 @@
-<?php include_once("conecta_login.php"); ?>
+<?php include_once("conecta_login.php"); 
+// print_r($_SESSION);
+ if (isset($_SESSION['mensagem'])) {
+    $msg = $util->mostraMensagem($_SESSION['tipoMsg'], $_SESSION['mensagem']);
+    // unset($_SESSION['mensagem'], $_SESSION['tipoMsg']);
+    
+  }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,66 +23,71 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="js/funcoes.js"></script>
+	<link rel="stylesheet" href="css/padrao.css">
 	<script type="text/JavaScript">
 		function cancelar(){
 			postFormulario('lancamentos_edita.php', {id: 0});
 		}
 
 		function operacao(op){
-			$.post("lancamentos_grava.php", {operacao: op}, 
-				function(data){
-					if (data == 'OK') {
-						alert("Gravado com sucesso!");
-					}
-				});
+			$("#operacao_edita").val(op);
+			$("#form_edita").submit();
 		}
 	</script>
 </head>
 <body>
 	<? include('menu.php'); 
-		if (!empty($_POST['id'])) {
+		if (!empty($_REQUEST['id'])) {
 			$sql = "SELECT * FROM lanctos 
 					JOIN tipo ON (idtipo = lct_idtipo)
 					JOIN classe ON (idclasse = lct_idclasse)
-				WHERE idlanctos = " . $_POST['id'];
+				WHERE idlanctos = " . $_REQUEST['id'];
 			$reg = $db->retornaUmReg($sql);
 		}
 	?>
-	<input type="hidden" id="idlancto" value="<?= $reg['idlanctos']?>">
+	<div class="row divMsg">
+        <div class="col-md-4 col-sm-1 col-1"></div>
+        <div class="col-md-4 col-sm-10 col-10"><?= $msg ?></div>   
+        <div class="col-md-4 col-sm-1 col-1"></div>
+    </div>
 	<div class="card">
 	  <div class="card-header">Lançamentos</div>
-	  <div class="card-body container-fluid">
-	  	<div class="form-group row">
-	  		<div class="col-2">
-	  			<label for="valor">Valor:</label>
-	  		</div>
-	  		<div class="col-10">
-	  			<input type="text" id="valor" class="form-control" value="<?= $reg['lct_valor']?>">
-	  		</div>
-	  	</div>
-	  	<div class="form-group row">
-	  		<div class="col-2">
-		  		<label for="tipo">Tipo:</label>
+	    <form action="lancamentos_grava.php" id="form_edita" method="post">
+	    	<input type="hidden" name="idlancto" id="idlancto" value="<?= $reg['idlanctos']?>">
+	    	<input type="hidden" name="operacao" value="" id="operacao_edita">
+		    <div class="card-body container-fluid">
+		  		<div class="form-group row">
+		  			<div class="col-2">
+		  				<label for="lct_valor">Valor:</label>
+		  			</div>
+		  			<div class="col-10">
+		  				<input type="text" id="lct_valor" name="lct_valor" class="form-control" value="<?= $reg['lct_valor']?>">
+		  			</div>
+		  		</div>
+		  		<div class="form-group row">
+		  			<div class="col-2">
+			  			<label for="lct_idtipo">Tipo:</label>
+			  		</div>
+		  			<div class="col-10">
+		  				<?
+		  					$sql = "SELECT * FROM tipo";
+		  					echo $util->comboBoxSql('lct_idtipo', 'tipo_descricao', 'idtipo', $sql, $db, $reg['idtipo']);
+		  				?>
+			  		</div>
+		  		</div>
+		  		<div class="form-group row">
+		  			<div class="col-2">
+			  			<label for="lct_idclasse">&nbsp;</label>
+			  		</div>
+			  		<div class="col-10">
+			  			<?
+			  				$sql = "SELECT * FROM classe";
+			  				echo $util->comboBoxSql('lct_idclasse', 'cls_descricao', 'idclasse', $sql, $db, $reg['idclasse']);
+			  			?>
+			  		</div>
+		  		</div>
 		  	</div>
-	  		<div class="col-10">
-	  				<?
-	  					$sql = "SELECT * FROM tipo";
-	  					echo $util->comboBoxSql('tipo', 'tipo_descricao', 'idtipo', $sql, $db, $reg['idtipo']);
-	  				?>
-		  	</div>
-	  	</div>
-	  	<div class="form-group row">
-	  		<div class="col-2">
-		  		<label for="tipo2">&nbsp;</label>
-		  	</div>
-		  	<div class="col-10">
-		  		<?
-		  			$sql = "SELECT * FROM classe";
-		  			echo $util->comboBoxSql('classe', 'cls_descricao', 'idclasse', $sql, $db, $reg['idclasse']);
-		  		?>
-		  	</div>
-	  	</div>
-	  </div>
+		</form>
 	  <div class="card-footer container-fluid">
 	  	<div class="row">
 	  		<div class="btn btn-primary col-3" onclick="operacao('gravar')">Gravar</div>
