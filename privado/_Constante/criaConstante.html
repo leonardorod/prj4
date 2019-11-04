@@ -1,0 +1,57 @@
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/padrao.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body style="margin-top: 20px;">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-sm-1"></div>
+          <div class="col-md-4 col-sm-10">
+            <div class="card" style="border: solid 2px #828282; ">
+              <div class="card-header" style="border-bottom: solid 1px #828282;" >
+                Criar Constante
+              </div>
+              <div class="card-body">
+                <form action="criaConstante_grava.php" method="POST">
+                  <div class="form-group">
+                    <label for="servidor">Servidor</label>
+                    <input type="text" class="form-control" id="servidor" name="servidor" placeholder="localhost" autofocus>
+                  </div>
+                  <div class="form-group">
+                    <label for="porta">Porta</label>
+                    <input type="text" class="form-control" id="porta" name="porta" placeholder="3306">
+                  </div>
+                  <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="root">
+                  </div>
+                  <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Sem senha">
+                  </div>
+                  <div class="form-group">
+                    <label for="nomeBase">Banco de dados</label>
+                    <input type="text" class="form-control" id="nomeBase" name="nomeBase" placeholder="DB_Base">
+                  </div>
+                  <center><button type="submit" class="btn btn-info" >Criar</button></center>
+                  <span class="Obs_claro" >*Dados usados para criar o banco de dados <br> *Campos em branco assumirão um valor padrão</span>
+                </form>
+              </div>
+          </div>
+        <div class="col-md-4 col-sm-1"></div>
+      </div>
+  </div>
+    </div>
+  </body>
+</html>
