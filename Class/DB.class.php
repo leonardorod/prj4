@@ -172,6 +172,7 @@
 		  $this->erro = '';
 		  $this->msgErro = '';
 			try{
+				// echo $sql;
 				$this->conexao->exec($sql);
 				$this->erro = false;
 				if(!empty($tipoMsg)) $this->geraMensagem($tipoMsg);
@@ -233,28 +234,14 @@
 				}
 			}
 
-		public function retornaUmTel($idpessoas){
-			$sql = "SELECT * FROM pessoas_numeros WHERE pnum_idpessoas = " . $idpessoas . " LIMIT 1";
-			$res = $this->conexao->query($sql);
-			$res->execute();
-			$reg = $res->fetchAll(PDO::FETCH_ASSOC);
-			if ($reg[0]['pnum_DDD'] != "") {
-				$telefone = "(" . $reg[0]['pnum_DDD'] . ") " .  $reg[0]['pnum_numero'];
-			}else{
-				$telefone = $reg[0]['pnum_numero'];
-			}
-
-			return $telefone;
-		}
-
 		private function geraMensagem($tipoMsg){
 			switch($tipoMsg){
 				case 'Inserir':
-					$_SESSION['mensagem'] = "Cadastro efetuada com sucesso!";
+					$_SESSION['mensagem'] = "Cadastro efetuado com sucesso!";
 			    	$_SESSION['tipoMsg'] = "info";
 					break;
 				case 'Alterar':
-					$_SESSION['mensagem'] = "Alteração efetuado com sucesso!";
+					$_SESSION['mensagem'] = "Alteração efetuada com sucesso!";
 	      			$_SESSION['tipoMsg'] = "info";
 					break;
 				case 'Excluir':

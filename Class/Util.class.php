@@ -122,9 +122,9 @@ class Util{
 		}
 	}
 
-	public function comboBoxSql($nomeInput, $campoMostra, $campoValue, $sql, $db, $valueReg = ''){
+	public function comboBoxSql($nomeInput, $campoMostra, $campoValue, $sql, $db, $valueReg = '', $opcional = ''){
 		$res = $db->consultar($sql);
-		$comboBox = '<select class="form-control" name="' . $nomeInput . '" id="' . $nomeInput . '" >';
+		$comboBox = '<select class="form-control" name="' . $nomeInput . '" id="' . $nomeInput . '" ' . $opcional . '>';
 		$comboBox .= '<option value="0"' . $this->defineSelected('', $valueReg) . '>-----------</option>';
 		foreach ($res as $reg) {
 			$comboBox .= '<option value="' . $reg[$campoValue] . '" ' . $this->defineSelected($reg[$campoValue], $valueReg) . ' >' . $reg[$campoMostra] . '</option>';

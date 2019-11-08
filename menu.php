@@ -11,10 +11,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="lancamentos_consulta.php">Lançamentos</a>
+        <a class="nav-link active" href="lancamentos_consulta.php">Lançamentos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="relatorios.php">Relatórios</a>
+        <a class="nav-link active" href="relatorios_sel.php">Relatórios</a>
       </li>
     </ul>
     <div>
