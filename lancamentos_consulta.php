@@ -45,8 +45,8 @@
 					<tbody>
 						<?$sql = "SELECT * FROM lanctos 
 										JOIN pessoas ON (idpessoas = lct_idpessoas)
-										JOIN tipo ON (idtipo = lct_idtipo)
-										JOIN classe ON (idclasse = lct_idclasse)
+										LEFT JOIN tipo ON (idtipo = lct_idtipo)
+										LEFT JOIN classe ON (idclasse = lct_idclasse)
 									WHERE idpessoas = " . $_SESSION['idusuario'] . "
 									ORDER BY idlanctos DESC";
 						$res = $db->consultar($sql);

@@ -40,6 +40,11 @@
 		}
 
 		function operacao(op){
+			if (op == 'excluir') {
+				if(!confirm('Deseja excluir esse registro?')){
+					return;
+				}
+			}
 			$("#operacao_edita").val(op);
 			$("#form_edita").submit();
 		}
@@ -56,8 +61,8 @@
 	<? include('menu.php'); 
 		if (!empty($_REQUEST['id'])) {
 			$sql = "SELECT * FROM lanctos 
-					JOIN tipo ON (idtipo = lct_idtipo)
-					JOIN classe ON (idclasse = lct_idclasse)
+					LEFT JOIN tipo ON (idtipo = lct_idtipo)
+					LEFT JOIN classe ON (idclasse = lct_idclasse)
 				WHERE idlanctos = " . $_REQUEST['id'];
 			$reg = $db->retornaUmReg($sql);
 		}
