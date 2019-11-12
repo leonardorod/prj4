@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `lanctos` (
   `lct_idclasse` int(11) NOT NULL,
   `lct_idpessoas` int(11) NOT NULL,
   `lct_obs` varchar(255) DEFAULT NULL,
-  `lct_data` datetime,
+  `lct_data` date,
   PRIMARY KEY (idlanctos)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO lanctos(lct_valor, lct_idtipo, lct_idclasse, lct_idpessoas, lct_data) VALUES ('100', '2', '1', '1', '2019-01-01 00:00:00');
+INSERT INTO lanctos(lct_valor, lct_idtipo, lct_idclasse, lct_idpessoas, lct_data, lct_obs) VALUES ('100', '2', '1', '1', '2019-01-01', 'teste');
